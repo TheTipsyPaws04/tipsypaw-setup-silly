@@ -29,13 +29,20 @@ if (Test-Path "$DIR\.git") {
   git clone -b release $REPO $DIR
 }
 
-$desk = [Environment]::GetFolderPath('Desktop')
-$ws = New-Object -ComObject WScript.Shell
-$sc = $ws.CreateShortcut("$desk\SillyTavern.lnk")
-$sc.TargetPath = "$DIR\Start.bat"
-$sc.WorkingDirectory = $DIR
-$sc.Save()
-Write-Host '[+] Shortcut created on Desktop.' -ForegroundColor Green
+try {
+  $desk = [Environment]::GetFolderPath('Desktop')
+  $tmp  = Join-Path $env:TEMP 'SillyTavern.lnk'
+  Remove-Item -LiteralPath $tmp -Force -ErrorAction SilentlyContinue
+  $ws = New-Object -ComObject WScript.Shell
+  $sc = $ws.CreateShortcut($tmp)
+  $sc.TargetPath = "$DIR\Start.bat"
+  $sc.WorkingDirectory = $DIR
+  $sc.Save()
+  Move-Item -LiteralPath $tmp -Destination (Join-Path $desk 'SillyTavern.lnk') -Force
+  Write-Host '[+] Shortcut created on Desktop.' -ForegroundColor Green
+} catch {
+  Write-Host '[!] Skipped shortcut:' $_.Exception.Message -ForegroundColor Yellow
+}
 
 Set-Location $DIR
 Write-Host '[+] Starting SillyTavern...' -ForegroundColor Green
