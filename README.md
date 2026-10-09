@@ -7,7 +7,7 @@
 เปิด **PowerShell** แล้ววางบรรทัดเดียวนี้:
 
 ```powershell
-irm https://raw.githubusercontent.com/YOUR-USERNAME/tipsypaw-setup-silly/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/YOUR-USERNAME/tipsypaw-setup-silly/refs/heads/main/install-pc.ps1 | iex
 ```
 
 จะติดตั้ง Git + Node.js ให้เอง, โหลด SillyTavern, สร้างทางลัดหน้า Desktop แล้วเปิดให้ทันที
@@ -17,7 +17,7 @@ irm https://raw.githubusercontent.com/YOUR-USERNAME/tipsypaw-setup-silly/main/in
 ติดตั้ง Termux จาก [F-Droid](https://f-droid.org/en/packages/com.termux/) ก่อน แล้วเปิด Termux วางบรรทัดเดียวนี้:
 
 ```bash
-curl -sL https://raw.githubusercontent.com/YOUR-USERNAME/tipsypaw-setup-silly/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/YOUR-USERNAME/tipsypaw-setup-silly/refs/heads/main/install-android.sh | bash
 ```
 
 จากนั้นเปิดเบราว์เซอร์มือถือไปที่ `http://localhost:8000`
